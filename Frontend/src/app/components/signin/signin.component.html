@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col col-lg-6">
+            <div class="card shadow-lg o-hidden border-0">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h4 class="text-dark mb-4">Welcome!</h4>
+                                </div>
+                                <form class="user">
+                                    <!--div class="form-group">
+                                        <input type="text" [(ngModel)]="user.email" name="email" class="form-control" placeholder="Email" required autofocus>
+                                    </div-->
+                                    <mat-form-field class="form-user">
+                                        <mat-label>Email</mat-label>
+                                        <input matInput name="email" [formControl]="emailFC" placeholder="Ej. email@ejemplo.com">
+                                        <mat-error *ngIf="emailFC.hasError('email') && !emailFC.hasError('required')">
+                                            Please entered a valid email.
+                                        </mat-error>
+                                        <mat-error name="err-email" *ngIf="emailFC.hasError('required')">
+                                            Email is <strong>required</strong>
+                                        </mat-error>
+                                    </mat-form-field>
+                                    <!--div class="form-group">
+                                        <input type="password" [(ngModel)]="user.password" name="password" class="form-control" placeholder="Password" required>
+                                    </div-->
+                                    <mat-form-field class="form-user">
+                                        <mat-label>Password</mat-label>
+                                        <input matInput name="password" [formControl]="passwordFC" placeholder="Password">
+                                        <mat-error name="err-password" *ngIf="passwordFC.hasError('required')">
+                                            La contraseña es <strong>obligatoria</strong>
+                                        </mat-error>
+                                    </mat-form-field>
+                                    <button (click)="signIn()" class="btn btn-primary btn-block text-white btn-user form-user form-user-btn" type="submit">
+                                        Sign In
+                                    </button>
+                                </form>
+                                <hr>
+                                <div class="text-center"><a class="small" href="/signup">Sign Up</a></div>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
