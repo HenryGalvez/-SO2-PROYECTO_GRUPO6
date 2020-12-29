@@ -48,7 +48,7 @@ router.post("/download",async function(req, res, next) {
 router.post("/getmigames",verifyToken,async function(req, res, next) {
     const { idUser } = req.body; //obtiene los juegos de un determinado usuario
 
-    const listgames = await Game.find({"_id":idUser})
+    const listgames = await GameUser.find({"_id":idUser})
     return res.status(200).json({  data: listgames })
   
 });
