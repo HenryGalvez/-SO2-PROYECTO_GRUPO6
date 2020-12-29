@@ -4,6 +4,7 @@ const gererateToken = require('./security/verify').generateToken;
 const verifyToken = require('./security/verify').verifyToken;
 //const User = require('./models/User');
 const Game = require('./models/Game');
+const GameUser = require('./models/GameUser');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
@@ -24,22 +25,31 @@ router.get("/getgames", verifyToken,async function(req, res, next) {
 });
 
 router.post("/download",async function(req, res, next) {
-    const { title, email } = req.body //envia el title del juego y el emal de quien lo descarga
+    const { idUser,game } = req.body; //envia el title del juego y el email de quien lo descarga
+    const { _id,title, img, price, downloads,description }=game;
+    
+    //se guarda 
+    const existe=await GameUser.findOne({"idUser":idUser,"title":title})
 
-    /*const newGame = new Game({ title, img, price, downloads,description  })
-    await newGame.save()
-    const token = gererateToken(newGame);
-    res.status(200).json({ token: token, message: 'Successfully!!' })*/
-  
+    const newGameUser = new GameUser({ idUser,title, img, price, downloads,description})
+    
+    if(!existe)
+        await newGameUser.save();
+    const token = gererateToken(newGameUser);
+    
+    //se actualiza el dato downlads
+    var gamechange=await Game.findOne({"title":title});
+    gamechange.downloads=Number(gamechange.downloads)+1;
+    await Game.save(gamechange);
+
+    res.status(200).json({ token: token, message: 'Successfully!!' })
 });
 
-router.post("/getmigames",async function(req, res, next) {
-    const { email } = req.body //obtiene los juegos de un determinado usuario
+router.post("/getmigames",verifyToken,async function(req, res, next) {
+    const { idUser } = req.body; //obtiene los juegos de un determinado usuario
 
-    /*const newGame = new Game({ title, img, price, downloads,description  })
-    await newGame.save()
-    const token = gererateToken(newGame);
-    res.status(200).json({ token: token, message: 'Successfully!!' })*/
+    const listgames = await Game.find({"_id":idUser})
+    return res.status(200).json({  data: listgames })
   
 });
 
