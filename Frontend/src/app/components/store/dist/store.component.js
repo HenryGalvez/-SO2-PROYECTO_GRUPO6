@@ -28,6 +28,7 @@ var StoreComponent = /** @class */ (function () {
         var _this = this;
         this.gameService.getStoreGames()
             .subscribe(function (res) {
+            console.log(res);
             _this.games = res.data;
         }, function (err) {
             console.log(err);

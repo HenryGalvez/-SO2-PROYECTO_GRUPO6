@@ -1,4 +1,4 @@
 "use strict";
 exports.__esModule = true;
 exports.baseURL = void 0;
-exports.baseURL = 'http://localhost:3000/api/';
+exports.baseURL = 'http://35.202.253.54/api/';

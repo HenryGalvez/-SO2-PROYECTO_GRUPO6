@@ -31,6 +31,7 @@ export class StoreComponent implements OnInit {
   getGames(){
     this.gameService.getStoreGames()
     .subscribe((res: any) => {
+      console.log(res)
       this.games = res.data
     },err => {
       console.log(err);
