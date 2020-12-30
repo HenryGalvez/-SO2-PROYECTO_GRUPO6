@@ -16,6 +16,7 @@ var auth_guard_1 = require("./auth.guard");
 var profile_component_1 = require("./components/profile/profile.component");
 var store_component_1 = require("./components/store/store.component");
 var mygames_component_1 = require("./components/mygames/mygames.component");
+var create_games_component_1 = require("./components/create-games/create-games.component");
 var routes = [
     {
         path: 'store',
@@ -23,6 +24,10 @@ var routes = [
         canActivate: [auth_guard_1.AuthGuard]
     },
     {
+        path: 'newgame',
+        component: create_games_component_1.CreateGamesComponent,
+        canActivate: [auth_guard_1.AuthGuard]
+    }, {
         path: 'mygames',
         component: mygames_component_1.MygamesComponent,
         canActivate: [auth_guard_1.AuthGuard]

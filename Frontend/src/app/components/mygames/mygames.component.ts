@@ -22,6 +22,15 @@ export class MygamesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.getMyGames()
+  }
+
+  getMyGames(){
+    this.gameService.getMyGames([]).subscribe((res: any)=>{
+      this.games = res.data;
+    },err => {
+      this.toastr.error("Error");
+    })
   }
 
 }

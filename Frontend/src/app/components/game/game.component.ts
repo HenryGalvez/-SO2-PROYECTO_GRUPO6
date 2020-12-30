@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { GameService } from 'src/app/services/game/game.service';
 import { ToastrService } from 'ngx-toastr';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-game',
@@ -15,8 +15,11 @@ export class GameComponent implements OnInit {
   constructor(
     private toastr: ToastrService,
     private gameService: GameService,
-    public dialogRef: MatDialogRef<GameComponent>
-  ) { }
+    public dialogRef: MatDialogRef<GameComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {
+    this.game = this.data
+  }
 
   ngOnInit(): void {
   }
@@ -29,10 +32,12 @@ export class GameComponent implements OnInit {
     })
   }
 
-  getBuyGame(data: any) {
-    this.gameService.buyGame(data).subscribe((res: any) => {
+  getBuyGame() {
+    this.gameService.buyGame({game:this.game}).subscribe((res: any) => {
       this.toastr.success(res.message)
+      this.dialogRef.close();
     }, err => {
+      console.log(err)
       this.toastr.error(err.error.message);
     })
   }

@@ -6,22 +6,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 exports.__esModule = true;
-exports.StoreService = void 0;
+exports.AppComponent = void 0;
 var core_1 = require("@angular/core");
-var baseURL_1 = require("../shared/baseURL");
-var StoreService = /** @class */ (function () {
-    function StoreService(http) {
-        this.http = http;
-        this.URL = baseURL_1.baseURL + 'game/';
+var AppComponent = /** @class */ (function () {
+    function AppComponent(authService) {
+        this.authService = authService;
+        this.title = "";
     }
-    StoreService.prototype.getStoreGames = function () {
-        return this.http.get(this.URL + 'getgames');
-    };
-    StoreService = __decorate([
-        core_1.Injectable({
-            providedIn: 'root'
+    AppComponent = __decorate([
+        core_1.Component({
+            selector: 'app-root',
+            templateUrl: './app.component.html',
+            styleUrls: ['./app.component.css']
         })
-    ], StoreService);
-    return StoreService;
+    ], AppComponent);
+    return AppComponent;
 }());
-exports.StoreService = StoreService;
+exports.AppComponent = AppComponent;

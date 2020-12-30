@@ -7,11 +7,11 @@ import { baseURL } from '../shared/baseURL';
 })
 export class StoreService {
 
-  private URL = baseURL + 'store/'
+  private URL = baseURL + 'game/'
 
   constructor(private http: HttpClient) { }
 
   getStoreGames() {
-    return this.http.get(this.URL + 'storegames')
+    return this.http.get(this.URL + 'getgames')
   }
 }

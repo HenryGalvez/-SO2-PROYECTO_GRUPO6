@@ -19,6 +19,15 @@ var MygamesComponent = /** @class */ (function () {
         ];
     }
     MygamesComponent.prototype.ngOnInit = function () {
+        this.getMyGames();
+    };
+    MygamesComponent.prototype.getMyGames = function () {
+        var _this = this;
+        this.gameService.getMyGames([]).subscribe(function (res) {
+            _this.games = res.data;
+        }, function (err) {
+            _this.toastr.error("Error");
+        });
     };
     MygamesComponent = __decorate([
         core_1.Component({

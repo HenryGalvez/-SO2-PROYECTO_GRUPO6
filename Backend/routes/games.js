@@ -14,8 +14,7 @@ router.post("/savegame",async function(req, res, next) {
     const { title, img, price, downloads,description } = req.body
     const newGame = new Game({ title, img, price, downloads,description  })
     await newGame.save()
-    const token = gererateToken(newGame);
-    res.status(200).json({ token: token, message: 'Successfully!!' })
+    res.status(200).json({ message: 'Successfully!!' })
   
 });
 
@@ -24,7 +23,7 @@ router.get("/getgames", verifyToken,async function(req, res, next) {
   return res.status(200).json({  data: listgames })
 });
 
-router.post("/download",async function(req, res, next) {
+router.post("/download", verifyToken,async function(req, res, next) {
     const { idUser,game } = req.body; //envia el title del juego y el email de quien lo descarga
     const { _id,title, img, price, downloads,description }=game;
     
@@ -32,17 +31,18 @@ router.post("/download",async function(req, res, next) {
     const existe=await GameUser.findOne({"idUser":idUser,"title":title})
 
     const newGameUser = new GameUser({ idUser,title, img, price, downloads,description})
+    console.log(existe)
     
     if(!existe)
         await newGameUser.save();
-    const token = gererateToken(newGameUser);
     
     //se actualiza el dato downlads
     var gamechange=await Game.findOne({"title":title});
     gamechange.downloads=Number(gamechange.downloads)+1;
-    await Game.save(gamechange);
+    //await Game.save(gamechange);
+    await gamechange.save()
 
-    res.status(200).json({ token: token, message: 'Successfully!!' })
+    res.status(200).json({ message: 'Successfully!!' })
 });
 
 router.post("/getmigames",verifyToken,async function(req, res, next) {

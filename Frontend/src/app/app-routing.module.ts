@@ -8,6 +8,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { StoreComponent } from './components/store/store.component';
 import { MygamesComponent } from './components/mygames/mygames.component';
 import { GameComponent } from './components/game/game.component';
+import { CreateGamesComponent } from './components/create-games/create-games.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'newgame',
+    component: CreateGamesComponent,
+    canActivate: [AuthGuard]
+  },{
     path: 'mygames',
     component: MygamesComponent,
     canActivate: [AuthGuard]

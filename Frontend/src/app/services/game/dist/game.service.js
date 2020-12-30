@@ -12,19 +12,22 @@ var baseURL_1 = require("../shared/baseURL");
 var GameService = /** @class */ (function () {
     function GameService(http) {
         this.http = http;
-        this.URL = baseURL_1.baseURL + 'task/';
+        this.URL = baseURL_1.baseURL + 'game/';
     }
+    GameService.prototype.insertGame = function (data) {
+        return this.http.post(this.URL + 'savegame', data);
+    };
     GameService.prototype.getInfoGame = function (data) {
         return this.http.post(this.URL + 'infogame', data);
     };
     GameService.prototype.getMyGames = function (data) {
-        return this.http.post(this.URL + 'mygames', data);
+        return this.http.post(this.URL + 'getmigames', data);
     };
     GameService.prototype.checkGame = function (data) {
         return this.http.post(this.URL + 'checkgame', data);
     };
     GameService.prototype.buyGame = function (data) {
-        return this.http.post(this.URL + 'buygame', data);
+        return this.http.post(this.URL + 'download', data);
     };
     GameService = __decorate([
         core_1.Injectable({

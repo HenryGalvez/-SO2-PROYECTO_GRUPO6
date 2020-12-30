@@ -30,6 +30,8 @@ var dialog_1 = require("@angular/material/dialog");
 var store_component_1 = require("./components/store/store.component");
 var game_component_1 = require("./components/game/game.component");
 var mygames_component_1 = require("./components/mygames/mygames.component");
+var create_games_component_1 = require("./components/create-games/create-games.component");
+var table_1 = require("@angular/material/table");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -43,6 +45,7 @@ var AppModule = /** @class */ (function () {
                 store_component_1.StoreComponent,
                 game_component_1.GameComponent,
                 mygames_component_1.MygamesComponent,
+                create_games_component_1.CreateGamesComponent,
             ],
             imports: [
                 platform_browser_1.BrowserModule,
@@ -59,6 +62,7 @@ var AppModule = /** @class */ (function () {
                 datepicker_1.MatDatepickerModule,
                 core_2.MatNativeDateModule,
                 dialog_1.MatDialogModule,
+                table_1.MatTableModule
             ],
             providers: [
                 auth_guard_1.AuthGuard,

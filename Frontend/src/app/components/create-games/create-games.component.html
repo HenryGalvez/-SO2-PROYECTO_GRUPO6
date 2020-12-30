@@ -1,0 +1,71 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col col-lg-6">
+            <div class="card shadow-lg o-hidden">
+                <div class="card-body justify-content-center">
+                    <div class="p-1">
+                        <div class="text-center">
+                            <p class="text-dark mb-4 h2">Create Product</p>
+                        </div>
+
+                        <form class="user" [formGroup]="formG">
+
+                            <mat-form-field class="form-user">
+                                <mat-label>Title</mat-label>
+                                <input matInput name="title" [formControl]="title" placeholder="Title">
+                                <mat-error *ngIf="title.hasError('required')">
+                                    Title is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="form-user">
+                                <mat-label>Price</mat-label>
+                                <input matInput name="price" [formControl]="price" placeholder="Price">
+                                <mat-error name="err-password" *ngIf="price.hasError('required')">
+                                    Price is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="form-user">
+                                <mat-label>Image</mat-label>
+                                <input matInput name="image" [formControl]="img" placeholder="Image">
+                                <mat-error name="err-password" *ngIf="img.hasError('required')">
+                                    Image is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="form-user">
+                                <mat-label>Description</mat-label>
+                                <textarea matInput name="description" [formControl]="description" placeholder="Description"></textarea>
+                                <mat-error name="err-password" *ngIf="description.hasError('required')">
+                                    Description is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                            <button (click)="createGame()" class="btn btn-primary btn-block text-white btn-user form-user form-user-btn" type="submit">
+                                Create New Product
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 mt-4">
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let element">{{element._id}}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Title </th>
+      <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef> Price </th>
+      <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>

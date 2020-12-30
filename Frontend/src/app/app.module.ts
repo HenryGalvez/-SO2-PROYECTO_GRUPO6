@@ -22,6 +22,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { StoreComponent } from './components/store/store.component';
 import { GameComponent } from './components/game/game.component';
 import { MygamesComponent } from './components/mygames/mygames.component';
+import { CreateGamesComponent } from './components/create-games/create-games.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { MygamesComponent } from './components/mygames/mygames.component';
     StoreComponent,
     GameComponent,
     MygamesComponent,
+    CreateGamesComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,7 @@ import { MygamesComponent } from './components/mygames/mygames.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatDialogModule,
+    MatTableModule
   ],
   providers: [
     AuthGuard,
