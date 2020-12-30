@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend-deployment
-  namespace: os2-final
+  namespace: os-final
 spec:
   replicas: 3
   selector:
